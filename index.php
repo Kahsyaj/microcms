@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<meta charset="utf-8" />
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="style.css" />
 		<title>MicroCMS - Home</title>
 	</head>
 
 	<body>
+		<header>
+			<h1>MicroCMS</h1>
+		</header>
 	<?php
 	try
 	{
@@ -13,14 +17,15 @@
 	}
 	catch (Exception $e)
 	{
-		die('Erreur : ', $e->getMessage());
+		die('Erreur : ' . $e->getMessage());
 	}
 	$req = $db->query('SELECT * FROM t_article ORDER BY art_id DESC');
 	while ($data = $req->fetch())
 	{
-		echo '<p><strong>' . $data['art_title'] . '</strong><br />' . $data['art_content'] . '</p>';
+		echo '<article><strong>' . $data['art_title'] . '</strong><br /><p>' . $data['art_content'] . '</p></article>';
 	}
 	$req->closeCursor();
 	?>
+		<footer class="footer"><a href="https://github.com/Kahsyaj/Exo-OC/tree/master/microcms">MicroCMS</a> is a minimalistic CMS built as a showcase for modern PHP developement.</footer>
 	</body>
 </html>
